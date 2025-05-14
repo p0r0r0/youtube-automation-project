@@ -1,39 +1,39 @@
 [Midjourney Prompt]
-A beautiful young woman studying with a pen on a notebook, soft lighting, cozy indoor study environment, bookshelf behind, cinematic composition --ar 16:9 --style raw --v 6
+A stunningly beautiful Southeast Asian girl with long straight black hair, idol-like visuals, wearing a white blouse, writing in a notebook with a pen, cozy study desk, soft sunlight, peaceful expression, cinematic lighting, ultra-realistic --ar 16:9 --style raw
 
 [Runway Prompt]
-Pencil moves softly, raindrops on window, warm light flickers every 2s. Loop 5s.
+She writes gently with her pen, her eyes blink subtly, hair moves softly, sunlight glows on her face, emotional cinematic loop. Loop 5s.
 
 [Suno Prompts - 30]
 Exclude Styles: vocals, edm, trap
 
-01. Style of Music: ambient pad + rain fx, 90BPM, stereo spread, designed to be emotional
-02. Style of Music: ambient pad + rain fx, 70BPM, stereo spread, designed to be calm
-03. Style of Music: jazz piano - 88BPM, 70BPM, ambient pad background, designed to be gentle
-04. Style of Music: ambient pad + rain fx, 85BPM, ambient pad background, designed to be dreamy
-05. Style of Music: ambient pad + rain fx, 90BPM, ambient pad background, designed to be gentle
-06. Style of Music: ambient pad + rain fx, 70BPM, mono reverb, designed to be immersive
-07. Style of Music: jazz piano - 88BPM, 60BPM, ambient pad background, designed to be dreamy
-08. Style of Music: lofi beat (vinyl) - 85BPM, 70BPM, mono reverb, designed to be emotional
-09. Style of Music: jazz piano - 88BPM, 90BPM, mono reverb, designed to be dreamy
-10. Style of Music: ambient pad + rain fx, 85BPM, lowpass filtered, designed to be dreamy
-11. Style of Music: jazz piano - 88BPM, 70BPM, stereo spread, designed to be dreamy
-12. Style of Music: ambient pad + rain fx, 70BPM, ambient pad background, designed to be immersive
-13. Style of Music: lofi beat (vinyl) - 85BPM, 90BPM, ambient pad background, designed to be emotional
-14. Style of Music: lofi beat (vinyl) - 85BPM, 85BPM, ambient pad background, designed to be immersive
-15. Style of Music: jazz piano - 88BPM, 90BPM, mono reverb, designed to be dreamy
-16. Style of Music: lofi beat (vinyl) - 85BPM, 85BPM, mono reverb, designed to be dreamy
-17. Style of Music: ambient pad + rain fx, 70BPM, lowpass filtered, designed to be immersive
-18. Style of Music: jazz piano - 88BPM, 70BPM, ambient pad background, designed to be calm
-19. Style of Music: jazz piano - 88BPM, 85BPM, ambient pad background, designed to be emotional
-20. Style of Music: lofi beat (vinyl) - 85BPM, 70BPM, stereo spread, designed to be gentle
-21. Style of Music: ambient pad + rain fx, 90BPM, stereo spread, designed to be gentle
-22. Style of Music: jazz piano - 88BPM, 70BPM, ambient pad background, designed to be gentle
-23. Style of Music: jazz piano - 88BPM, 85BPM, ambient pad background, designed to be dreamy
-24. Style of Music: ambient pad + rain fx, 70BPM, mono reverb, designed to be gentle
-25. Style of Music: jazz piano - 88BPM, 60BPM, mono reverb, designed to be immersive
-26. Style of Music: ambient pad + rain fx, 60BPM, mono reverb, designed to be emotional
-27. Style of Music: jazz piano - 88BPM, 60BPM, mono reverb, designed to be gentle
-28. Style of Music: ambient pad + rain fx, 70BPM, lowpass filtered, designed to be emotional
-29. Style of Music: ambient pad + rain fx, 85BPM, mono reverb, designed to be emotional
+01. Style of Music: ambient textures + soft strings - 80BPM, 60BPM, ambient pad background, designed to be immersive
+02. Style of Music: jazz piano - 88BPM, 60BPM, lowpass filtered, designed to be calm
+03. Style of Music: ambient textures + soft strings - 80BPM, 70BPM, stereo spread, designed to be calm
+04. Style of Music: ambient textures + soft strings - 80BPM, 60BPM, stereo spread, designed to be dreamy
+05. Style of Music: lofi beat (vinyl) - 85BPM, 85BPM, mono reverb, designed to be immersive
+06. Style of Music: lofi beat (vinyl) - 85BPM, 70BPM, stereo spread, designed to be immersive
+07. Style of Music: lofi beat (vinyl) - 85BPM, 85BPM, mono reverb, designed to be emotional
+08. Style of Music: lofi beat (vinyl) - 85BPM, 70BPM, ambient pad background, designed to be gentle
+09. Style of Music: lofi beat (vinyl) - 85BPM, 90BPM, lowpass filtered, designed to be gentle
+10. Style of Music: jazz piano - 88BPM, 70BPM, lowpass filtered, designed to be dreamy
+11. Style of Music: jazz piano - 88BPM, 70BPM, stereo spread, designed to be calm
+12. Style of Music: ambient textures + soft strings - 80BPM, 70BPM, stereo spread, designed to be gentle
+13. Style of Music: ambient textures + soft strings - 80BPM, 85BPM, ambient pad background, designed to be immersive
+14. Style of Music: lofi beat (vinyl) - 85BPM, 60BPM, stereo spread, designed to be immersive
+15. Style of Music: ambient textures + soft strings - 80BPM, 60BPM, stereo spread, designed to be gentle
+16. Style of Music: ambient textures + soft strings - 80BPM, 85BPM, lowpass filtered, designed to be immersive
+17. Style of Music: lofi beat (vinyl) - 85BPM, 85BPM, stereo spread, designed to be dreamy
+18. Style of Music: jazz piano - 88BPM, 70BPM, lowpass filtered, designed to be emotional
+19. Style of Music: ambient textures + soft strings - 80BPM, 70BPM, ambient pad background, designed to be gentle
+20. Style of Music: ambient textures + soft strings - 80BPM, 90BPM, ambient pad background, designed to be immersive
+21. Style of Music: lofi beat (vinyl) - 85BPM, 90BPM, stereo spread, designed to be calm
+22. Style of Music: jazz piano - 88BPM, 70BPM, lowpass filtered, designed to be immersive
+23. Style of Music: lofi beat (vinyl) - 85BPM, 90BPM, mono reverb, designed to be gentle
+24. Style of Music: ambient textures + soft strings - 80BPM, 85BPM, mono reverb, designed to be calm
+25. Style of Music: ambient textures + soft strings - 80BPM, 90BPM, mono reverb, designed to be immersive
+26. Style of Music: ambient textures + soft strings - 80BPM, 60BPM, mono reverb, designed to be immersive
+27. Style of Music: jazz piano - 88BPM, 70BPM, ambient pad background, designed to be dreamy
+28. Style of Music: ambient textures + soft strings - 80BPM, 85BPM, lowpass filtered, designed to be calm
+29. Style of Music: jazz piano - 88BPM, 60BPM, stereo spread, designed to be emotional
 30. Style of Music: lofi beat (vinyl) - 85BPM, 85BPM, mono reverb, designed to be dreamy

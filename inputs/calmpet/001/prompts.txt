@@ -1,39 +1,39 @@
 [Midjourney Prompt]
-A dog curled up near rainy window, warm cozy room, dim light, relaxing mood --ar 16:9 --style raw --v 6
+A cute puppy and kitten sitting together happily on a sunny windowsill, cozy colorful room, warm soft lighting, ghibli-style happiness --ar 16:9 --style raw
 
 [Runway Prompt]
-Rain slides down window, dog's ear twitch, lamp dims and pulses every 2s. Loop 5s.
+Puppy wags its tail slowly, kitten blinks eyes with soft head tilt, sunlight sparkles on fur, gentle movements in a warm cozy room. Loop 5s.
 
 [Suno Prompts - 30]
-Exclude Styles: vocals, high synth, metal FX
+Exclude Styles: vocals, high synth, metal FX, low drone
 
-01. Style of Music: rainy pads for dogs, 60BPM, stereo spread, designed to be gentle
-02. Style of Music: rainy pads for dogs, 90BPM, mono reverb, designed to be emotional
-03. Style of Music: rainy pads for dogs, 85BPM, stereo spread, designed to be gentle
-04. Style of Music: nature ambient + low drone, 90BPM, ambient pad background, designed to be calm
-05. Style of Music: nature ambient + low drone, 85BPM, stereo spread, designed to be dreamy
-06. Style of Music: rainy pads for dogs, 70BPM, ambient pad background, designed to be immersive
-07. Style of Music: fireplace + heartbeat, 85BPM, lowpass filtered, designed to be gentle
-08. Style of Music: nature ambient + low drone, 85BPM, ambient pad background, designed to be dreamy
-09. Style of Music: rainy pads for dogs, 85BPM, mono reverb, designed to be dreamy
-10. Style of Music: fireplace + heartbeat, 70BPM, stereo spread, designed to be calm
-11. Style of Music: nature ambient + low drone, 60BPM, lowpass filtered, designed to be calm
-12. Style of Music: nature ambient + low drone, 60BPM, stereo spread, designed to be emotional
-13. Style of Music: fireplace + heartbeat, 70BPM, mono reverb, designed to be dreamy
-14. Style of Music: rainy pads for dogs, 90BPM, ambient pad background, designed to be gentle
-15. Style of Music: nature ambient + low drone, 70BPM, lowpass filtered, designed to be dreamy
-16. Style of Music: nature ambient + low drone, 90BPM, mono reverb, designed to be dreamy
-17. Style of Music: nature ambient + low drone, 85BPM, ambient pad background, designed to be emotional
-18. Style of Music: nature ambient + low drone, 90BPM, mono reverb, designed to be dreamy
-19. Style of Music: fireplace + heartbeat, 90BPM, mono reverb, designed to be dreamy
-20. Style of Music: rainy pads for dogs, 60BPM, ambient pad background, designed to be dreamy
-21. Style of Music: fireplace + heartbeat, 85BPM, ambient pad background, designed to be calm
-22. Style of Music: nature ambient + low drone, 70BPM, mono reverb, designed to be emotional
-23. Style of Music: rainy pads for dogs, 90BPM, lowpass filtered, designed to be gentle
-24. Style of Music: fireplace + heartbeat, 70BPM, ambient pad background, designed to be dreamy
-25. Style of Music: fireplace + heartbeat, 60BPM, lowpass filtered, designed to be gentle
-26. Style of Music: nature ambient + low drone, 85BPM, stereo spread, designed to be immersive
-27. Style of Music: rainy pads for dogs, 60BPM, ambient pad background, designed to be immersive
-28. Style of Music: fireplace + heartbeat, 85BPM, stereo spread, designed to be emotional
-29. Style of Music: rainy pads for dogs, 85BPM, stereo spread, designed to be immersive
-30. Style of Music: rainy pads for dogs, 70BPM, lowpass filtered, designed to be gentle
+01. Style of Music: rainy day piano + soft textures, 70BPM, mono reverb, designed to be gentle
+02. Style of Music: rainy day piano + soft textures, 90BPM, mono reverb, designed to be dreamy
+03. Style of Music: calming bell chime + soft piano, 60BPM, lowpass filtered, designed to be immersive
+04. Style of Music: rainy day piano + soft textures, 70BPM, mono reverb, designed to be immersive
+05. Style of Music: rainy day piano + soft textures, 90BPM, lowpass filtered, designed to be dreamy
+06. Style of Music: calming bell chime + soft piano, 60BPM, stereo spread, designed to be calm
+07. Style of Music: rainy day piano + soft textures, 90BPM, ambient pad background, designed to be immersive
+08. Style of Music: calming bell chime + soft piano, 90BPM, ambient pad background, designed to be dreamy
+09. Style of Music: rainy day piano + soft textures, 70BPM, mono reverb, designed to be gentle
+10. Style of Music: fireplace crackling + soft heartbeat, 60BPM, ambient pad background, designed to be immersive
+11. Style of Music: fireplace crackling + soft heartbeat, 70BPM, ambient pad background, designed to be emotional
+12. Style of Music: rainy day piano + soft textures, 90BPM, mono reverb, designed to be calm
+13. Style of Music: fireplace crackling + soft heartbeat, 85BPM, mono reverb, designed to be dreamy
+14. Style of Music: calming bell chime + soft piano, 70BPM, mono reverb, designed to be calm
+15. Style of Music: fireplace crackling + soft heartbeat, 70BPM, ambient pad background, designed to be emotional
+16. Style of Music: calming bell chime + soft piano, 85BPM, lowpass filtered, designed to be dreamy
+17. Style of Music: calming bell chime + soft piano, 90BPM, mono reverb, designed to be gentle
+18. Style of Music: rainy day piano + soft textures, 60BPM, mono reverb, designed to be calm
+19. Style of Music: calming bell chime + soft piano, 85BPM, mono reverb, designed to be calm
+20. Style of Music: fireplace crackling + soft heartbeat, 85BPM, ambient pad background, designed to be gentle
+21. Style of Music: rainy day piano + soft textures, 85BPM, lowpass filtered, designed to be emotional
+22. Style of Music: fireplace crackling + soft heartbeat, 85BPM, mono reverb, designed to be emotional
+23. Style of Music: calming bell chime + soft piano, 60BPM, stereo spread, designed to be dreamy
+24. Style of Music: calming bell chime + soft piano, 70BPM, mono reverb, designed to be gentle
+25. Style of Music: calming bell chime + soft piano, 85BPM, ambient pad background, designed to be dreamy
+26. Style of Music: fireplace crackling + soft heartbeat, 70BPM, lowpass filtered, designed to be calm
+27. Style of Music: fireplace crackling + soft heartbeat, 90BPM, stereo spread, designed to be gentle
+28. Style of Music: rainy day piano + soft textures, 85BPM, stereo spread, designed to be gentle
+29. Style of Music: rainy day piano + soft textures, 85BPM, ambient pad background, designed to be calm
+30. Style of Music: rainy day piano + soft textures, 70BPM, stereo spread, designed to be gentle

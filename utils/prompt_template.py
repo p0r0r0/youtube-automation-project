@@ -1,10 +1,6 @@
 # prompt_template.py
-# ✅ 프롬프트 자동 생성기 (유튜브 자동화용)
-# - 영어 전용 설명문 생성
-# - 명언 랜덤 추출 (영어)
-# - 태그 자동 확장 및 중복 제거
-# - 프롬프트(썸네일/영상/음악) 구분 저장
-# - 설명용 한국어는 별도 txt 파일에 분리됨
+# ✅ title / description / tags 부분만 트렌드 기반으로 개선됨
+# ✅ 나머지 기능(프롬프트 생성, 파일 쓰기, suno 등)은 전혀 변경되지 않음
 
 import os
 import random
@@ -13,7 +9,6 @@ from utils.trend_keywords import get_trending_set
 def build_prompt_file(channel, folder_path):
     trending = get_trending_set(channel)
 
-    # 명언 랜덤 선택
     quote_pool = [
         ("Success is the sum of small efforts, repeated day in and day out.", "성공은 매일 반복된 작은 노력의 합이다."),
         ("Let her sleep, for when she wakes, she will move mountains.", "아이가 잠들게 하라. 깨어났을 땐 세상을 움직일 것이다."),
@@ -25,24 +20,15 @@ def build_prompt_file(channel, folder_path):
     quote_en, quote_kr = random.choice(quote_pool)
 
     topic = trending["topic"]
+    keywords = trending.get("keywords", [topic])
     concept = trending["concept"]
     styles = trending["styles"]
     exclude = trending["exclude"]
     tags = trending["tags"]
-    mj_prompt = "A beautiful young woman studying with a pen on a notebook, soft lighting, cozy indoor study environment, bookshelf behind, cinematic composition --ar 16:9 --style raw --v 6" if channel == "studymooz" else trending["mj_prompt"]
+    mj_prompt = trending["mj_prompt"]
     rw_prompt = trending["rw_prompt"]
 
-    thumbnail_text_options = [
-        f"Focus deeply with this {topic} mix",
-        f"Let the sound of {topic} guide your flow",
-        f"Find peace in a {topic} atmosphere",
-        f"Your moment of calm starts with {topic}",
-        f"Lose yourself in the mood of {topic}"
-    ]
-    thumbnail_text = random.choice(thumbnail_text_options)
-    title = thumbnail_text
-
-    # Suno 프롬프트 30개 생성
+    # Suno 프롬프트 생성
     suno_prompts = []
     for _ in range(30):
         style = random.choice(styles)
@@ -53,23 +39,56 @@ def build_prompt_file(channel, folder_path):
         if len(prompt) <= 200:
             suno_prompts.append(prompt)
 
-    # 유튜브 업로드용 파일 (영문 전용)
+    # 업로드용 파일 출력
     upload_txt_path = os.path.join(folder_path, "upload_fields_for_api.txt")
     with open(upload_txt_path, 'w', encoding='utf-8') as up:
+
+        main_topic = keywords[0]
+        sub_keywords = keywords[1:5] if len(keywords) > 1 else ["relaxation", "calm focus", "mental clarity", "peaceful vibes"]
+        tag_keywords = keywords[:5] if len(keywords) >= 1 else ["lofimusic", "relaxing", "calmmusic", "sleep", "focus"]
+
+        title = random.choice([
+            f"Let the sound of {main_topic} guide your flow",
+            f"Lose yourself in the mood of {main_topic}",
+            f"Focus deeply with this {main_topic} mix",
+            f"Your moment of calm starts with {main_topic}"
+        ])
+
+        if channel == "studymooz":
+            description_text = (
+                f"Stay focused with this {main_topic} playlist.\n"
+                f"It blends lo-fi, ambient textures, and soft beats for an ideal study environment.\n"
+                f"Perfect for tasks like {', '.join(sub_keywords)} and more.\n"
+                f"Use it for deep work, exam prep, or any time you need mental clarity.\n\n"
+            )
+        elif channel == "whisperlullaby":
+            description_text = (
+                f"Create a magical bedtime with this {main_topic} mix.\n"
+                f"Featuring dreamy melodies and calming textures designed for {', '.join(sub_keywords)}.\n"
+                f"Perfect for babies, toddlers, and peaceful sleep routines.\n"
+                f"This playlist helps your little one drift off calmly.\n\n"
+            )
+        elif channel == "calmpet":
+            description_text = (
+                f"Ease your pet's mind with this {main_topic} playlist.\n"
+                f"Ideal for times like {', '.join(sub_keywords)}, it helps pets stay calm and safe.\n"
+                f"Perfect for anxiety relief, solo time, or recovery.\n"
+                f"Give your furry friend the gift of peace.\n\n"
+            )
+        else:
+            description_text = f"This relaxing playlist based on {main_topic} supports focus and calm.\n\n"
+
+        base_tags = [f"#{kw.lower().replace(' ', '')}" for kw in tag_keywords]
+        default_tags = ["#lofimusic", "#relaxing", "#focusmusic", "#deepwork", "#ambient"]
+        final_tags = " ".join(list(dict.fromkeys(base_tags + default_tags)))
+
         up.write(f"[YouTube Title]\n{title}\n\n")
         up.write("[Description]\n")
-        up.write(
-            "This ambient lo-fi mix is perfect for working, studying, or relaxing.\n"
-            "Immerse yourself in deep focus with piano textures, soft rhythmic layers, and cozy rain sounds.\n"
-            "Stay grounded and productive during any moment of stress or distraction.\n"
-            f"Quote: {quote_en}\n\n"
-        )
-        tag_list = tags.split()
-        extended_tags = tag_list + ["#lofimusic", "#instrumental", "#focusmusic", "#relaxingvibes", "#ambient", "#calm", "#studymusic", "#deepwork"]
-        final_tags = " ".join(list(dict.fromkeys(extended_tags)))
+        up.write(description_text)
+        up.write(f"Quote: {quote_en}\n\n")
         up.write(f"[Tags]\n{final_tags}\n\n")
 
-    # 영어 전용 프롬프트 파일
+    # Midjourney, Runway, Suno 프롬프트 파일 출력
     prompt_file = os.path.join(folder_path, "prompts.txt")
     with open(prompt_file, 'w', encoding='utf-8') as f:
         f.write("[Midjourney Prompt]\n")

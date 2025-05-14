@@ -1,9 +1,6 @@
 # folder_manager.py
-# ✅ 이 파일은 자동으로 입력 작업 폴더를 생성하거나 덮어쓸지 선택하는 기능을 담당합니다.
-# - inputs/채널명/ 아래에 001, 002, 003... 형식으로 폴더를 자동 생성합니다.
-# - 기존 폴더가 있을 경우 덮어쓸지, 새로운 폴더를 생성할지 사용자에게 물어봅니다.
-# - 선택된 폴더 안에 mp3/ 하위 폴더도 자동 생성됩니다.
-# - 이후 이 폴더 경로가 prompt_generator.py로 반환되어 프롬프트 저장 위치로 사용됩니다.
+# ✅ inputs/채널명/001 등 작업 폴더 생성 또는 덮어쓰기
+# ✅ 항상 mp3/ 폴더까지 포함되도록 수정
 
 import os
 import shutil
@@ -26,10 +23,13 @@ def create_or_overwrite_project(channel_name):
         if choice == "1":
             shutil.rmtree(last_path)
             os.makedirs(last_path)
+            # ✅ 덮어쓰기 시에도 mp3 폴더 생성
+            os.makedirs(os.path.join(last_path, "mp3"), exist_ok=True)
             return last_path
 
     next_num = f"{len(existing)+1:03d}"
     next_path = os.path.join(base_path, next_num)
     os.makedirs(next_path)
+    # ✅ 새 폴더 생성 시에도 mp3 폴더 생성 (기존 유지)
     os.makedirs(os.path.join(next_path, "mp3"), exist_ok=True)
     return next_path

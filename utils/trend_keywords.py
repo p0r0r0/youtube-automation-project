@@ -1,7 +1,6 @@
 # trend_keywords.py
-# ✅ 이 파일은 Google Trends를 통해 실시간 검색 트렌드를 기반으로 유튜브 영상 주제, 썸네일, 음악 스타일 등을 자동 생성합니다.
-# - 중복 주기 제한 기능이 포함되어 있어, 최근 사용된 주제나 제목은 일정 기간(또는 최근 N개) 동안 재사용되지 않도록 설계되어 있습니다.
-# - 중복 회피를 위해 used_titles.json과 generation_log.csv를 참조하여 새롭고 신선한 콘텐츠를 자동 생성합니다.
+# ✅ 각 채널별 트렌드 기반 프롬프트 생성기
+# ✅ 트렌드 키워드가 부족할 경우 유사 인기 채널의 대표 키워드로 보완하여 SEO 최적화 강화
 
 from pytrends.request import TrendReq
 import random
@@ -11,12 +10,10 @@ from datetime import datetime, timedelta
 
 pytrends = TrendReq(hl='en-US', tz=540)
 
-# 최근 사용된 제목 확인 (최근 10개 기준)
 def is_recently_used(topic):
     used = [t['title'] for t in load_used_titles()[-10:]]
     return topic in used
 
-# 최근 N일 이내 사용된 topic인지 확인 (기록 기반)
 def is_topic_recent_in_log(topic, days=14):
     try:
         with open('logs/generation_log.csv', 'r', encoding='utf-8') as f:
@@ -31,12 +28,23 @@ def is_topic_recent_in_log(topic, days=14):
         pass
     return False
 
-# 채널별 기본 키워드 매핑 → pytrends 사용
 def get_google_trend_keyword(channel):
     base_keywords = {
         "studymooz": "study music",
         "whisperlullaby": "baby lullaby",
         "calmpet": "music for dogs"
+    }
+
+    fallback_keywords = {
+        "studymooz": [
+            "Exam Music", "Lo-fi for Studying", "Deep Work Focus", "Study With Me", "Chillhop"
+        ],
+        "whisperlullaby": [
+            "Baby Sleep Music", "Soft Lullabies", "Newborn Calm", "Crib Soothing", "Nap Time Sound"
+        ],
+        "calmpet": [
+            "Music for Dogs", "Dog Relaxation", "Pet Anxiety Relief", "Calming Sounds for Pets", "Thunder Music"
+        ]
     }
 
     keyword = base_keywords.get(channel, "relaxing music")
@@ -46,30 +54,53 @@ def get_google_trend_keyword(channel):
         related = pytrends.related_queries()[keyword]['top']
         if related is not None and not related.empty:
             top_keywords = related['query'].tolist()
-            for word in top_keywords:
-                candidate = f"{word.title()} for Focus"
-                if not is_recently_used(candidate) and not is_topic_recent_in_log(candidate):
-                    return candidate
+            keywords = [keyword.title()] + [kw.title() for kw in top_keywords[:9]]
+            if len(keywords) < 5:
+                extra = fallback_keywords.get(channel, [])
+                keywords += [kw for kw in extra if kw not in keywords][:5 - len(keywords)]
+            return keywords
     except:
         pass
 
-    return keyword.title()
+    return [keyword.title()] + fallback_keywords.get(channel, [])[:4]
 
-# 기존 get_trending_set 그대로 유지됨 (중복 회피 적용된 topic 사용)
 def get_trending_set(channel):
-    topic = get_google_trend_keyword(channel)
+    keywords = get_google_trend_keyword(channel)
+    topic = keywords[0]
+
+    ethnicity = random.choice(["Korean", "Japanese", "European", "Southeast Asian"])
+    hairstyle = random.choice(["long straight black hair", "short brown bob", "wavy chestnut hair", "ponytail with side bangs"])
+    face = random.choice(["idol-like visuals", "delicate facial features", "glamorous beauty", "celebrity-style makeup"])
+    outfit = random.choice(["knit sweater", "white blouse", "school uniform", "pastel cardigan"])
+    mood = random.choice(["dreamy", "focused", "cheerful", "peaceful"])
+
+    mj_prompt_text = (
+        f"A stunningly beautiful {ethnicity} girl with {hairstyle}, {face}, wearing a {outfit}, "
+        f"writing in a notebook with a pen, cozy study desk, soft sunlight, {mood} expression, "
+        f"cinematic lighting, ultra-realistic --ar 16:9 --style raw"
+    )
+
+    rw_prompt_text = (
+        "She writes gently with her pen, her eyes blink subtly, hair moves softly, "
+        "sunlight glows on her face, emotional cinematic loop. Loop 5s."
+    )
 
     if channel == "studymooz":
         return {
             "topic": topic,
+            "keywords": keywords,
             "concept": f"이 음악은 집중이 필요한 순간을 위해 설계되었습니다: {topic}",
-            "styles": ["lofi beat (vinyl) - 85BPM", "jazz piano - 88BPM", "ambient pad + rain fx"],
+            "styles": [
+                "lofi beat (vinyl) - 85BPM",
+                "jazz piano - 88BPM",
+                "ambient textures + soft strings - 80BPM"
+            ],
             "exclude": "vocals, edm, trap",
-            "tags": "#study #lofi #focus #rainyday",
-            "mj_prompt": f"A girl writing in a notebook under soft morning light, cozy room, rainy window, focused emotion --ar 16:9 --style raw --v 6",
-            "mj_expl": "공책에 필기하는 장면 + 창밖 비 + 집중을 유도하는 색감 조합",
-            "rw_prompt": "Pencil moves softly, raindrops on window, warm light flickers every 2s. Loop 5s.",
-            "rw_expl": "펜의 움직임, 조명 깜빡임, 창밖 비를 5초 루프로 자연스럽게 연결",
+            "tags": "#study #lofi #focus #cozy",
+            "mj_prompt": mj_prompt_text,
+            "mj_expl": "연예인급 여자 캐릭터가 공책에 글을 쓰는 감성 썸네일",
+            "rw_prompt": rw_prompt_text,
+            "rw_expl": "눈 깜빡임, 머리카락 흔들림 중심의 감성 루프",
             "quote_en": "Success is the sum of small efforts, repeated day in and day out.",
             "quote_kr": "성공은 매일 반복된 작은 노력의 합이다."
         }
@@ -77,14 +108,19 @@ def get_trending_set(channel):
     elif channel == "whisperlullaby":
         return {
             "topic": topic,
+            "keywords": keywords,
             "concept": f"이 음악은 아기의 편안한 수면을 돕기 위해 제작되었습니다: {topic}",
-            "styles": ["music box - 60BPM", "harp lullaby", "womb sound + soft pad"],
-            "exclude": "vocals, sharp treble, kick",
+            "styles": [
+                "soft music box - 60BPM",
+                "gentle harp melody",
+                "warm ambient pad + lullaby chime"
+            ],
+            "exclude": "vocals, sharp treble, kick, womb",
             "tags": "#lullaby #babysleep #calm #soothing",
-            "mj_prompt": f"A baby sleeping peacefully, star mobile above crib, pastel color scheme, warm nightlight glow --ar 16:9 --style raw --v 6",
-            "mj_expl": "파스텔 조명과 별 모빌, 아기 침대 속 포근함 강조",
-            "rw_prompt": "Mobile rotates, soft chest breathing every 2s, lights pulse gently. Loop 5s.",
-            "rw_expl": "숨쉬기와 조명 루프만으로 아기의 안정감 표현",
+            "mj_prompt": "a smiling cartoon baby playing in a fantastical rainbow nursery, wearing a colorful onesie, surrounded by glowing toys like whales, bunnies, star-shaped balloons, floating moons and clouds, soft sparkling pastel lights, dreamy magical atmosphere, highly detailed ghibli-style fantasy illustration with glitter and shimmer effects --ar 16:9 --style raw",
+            "mj_expl": "아기들이 좋아할만한 동화적 분위기의 밝고 귀여운 상상 속 유치원",
+            "rw_prompt": "Cartoon baby claps happily, colorful whale plush floats in the air, star mobiles sparkle and twinkle, glowing pastel rainbow lights shift gently, fantasy dream nursery animation. Loop 5s.",
+            "rw_expl": "아기의 동작, 인형, 모빌, 빛이 부드럽게 루프처럼 연출되는 귀여운 환상 장면",
             "quote_en": "Let her sleep, for when she wakes, she will move mountains.",
             "quote_kr": "아이가 잠들게 하라. 깨어났을 땐 세상을 움직일 것이다."
         }
@@ -92,21 +128,26 @@ def get_trending_set(channel):
     elif channel == "calmpet":
         return {
             "topic": topic,
+            "keywords": keywords,
             "concept": f"이 음악은 반려동물이 혼자 있는 시간을 편안하게 느낄 수 있도록 설계되었습니다: {topic}",
-            "styles": ["nature ambient + low drone", "fireplace + heartbeat", "rainy pads for dogs"],
-            "exclude": "vocals, high synth, metal FX",
+            "styles": [
+                "fireplace crackling + soft heartbeat",
+                "calming bell chime + soft piano",
+                "rainy day piano + soft textures"
+            ],
+            "exclude": "vocals, high synth, metal FX, low drone",
             "tags": "#pet #calm #dogmusic #thunderrelief",
-            "mj_prompt": f"A dog curled up near rainy window, warm cozy room, dim light, relaxing mood --ar 16:9 --style raw --v 6",
-            "mj_expl": "비 오는 방 안에서 안락한 반려견을 표현하여 안정감 부여",
-            "rw_prompt": "Rain slides down window, dog's ear twitch, lamp dims and pulses every 2s. Loop 5s.",
-            "rw_expl": "미세한 움직임을 5초 루프 안에 자연스럽게 녹임",
+            "mj_prompt": "A cute puppy and kitten sitting together happily on a sunny windowsill, cozy colorful room, warm soft lighting, ghibli-style happiness --ar 16:9 --style raw",
+            "mj_expl": "햇살 아래 앉아있는 귀여운 강아지와 고양이의 행복한 모습 표현",
+            "rw_prompt": "Puppy wags its tail slowly, kitten blinks eyes with soft head tilt, sunlight sparkles on fur, gentle movements in a warm cozy room. Loop 5s.",
+            "rw_expl": "꼬리 흔들기와 눈 깜빡임 중심의 감성 루프 연출",
             "quote_en": "Until one has loved an animal, a part of one's soul remains unawakened.",
             "quote_kr": "동물을 사랑해보지 않은 사람은, 영혼의 일부가 잠들어 있는 것이다."
         }
 
-    # fallback (예외 채널용)
     return {
         "topic": topic,
+        "keywords": keywords,
         "concept": f"실시간 트렌드를 기반으로 생성된 주제입니다: {topic}",
         "styles": ["ambient piano"],
         "exclude": "vocals",
